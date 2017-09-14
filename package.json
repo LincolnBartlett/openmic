@@ -1,0 +1,19 @@
+{
+  "name": "openmic",
+  "version": "1.0.0",
+  "description": "An online hub for open mics.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LincolnBartlett/openmic.git"
+  },
+  "author": "Lincoln W. Bartlett",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LincolnBartlett/openmic/issues"
+  },
+  "homepage": "https://github.com/LincolnBartlett/openmic#readme"
+}
