@@ -2,7 +2,7 @@
   "name": "openmic",
   "version": "1.0.0",
   "description": "An online hub for open mics.",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +15,16 @@
   "bugs": {
     "url": "https://github.com/LincolnBartlett/openmic/issues"
   },
-  "homepage": "https://github.com/LincolnBartlett/openmic#readme"
+  "homepage": "https://github.com/LincolnBartlett/openmic#readme",
+  "dependencies": {
+    "body-parser": "^1.18.1",
+    "dateformat": "^2.0.0",
+    "ejs": "^2.5.7",
+    "express": "^4.15.4",
+    "method-override": "^2.3.9",
+    "mongoose": "^4.11.11"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.0"
+  }
 }
