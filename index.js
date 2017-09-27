@@ -18,11 +18,11 @@ mongoose.connect('mongodb://localhost/openmic');
 
 //ROUTES
 app.get('/', function(req, res){
-    res.render('front')
+    res.render('front');
 });
 
 
-var appRoute = require('./routes/app/app.js');
+var appRoute = require('./routes/app.js');
 
 app.use('/app', appRoute);
 
@@ -32,4 +32,4 @@ app.listen(port, function(){
     console.log(`Server Started on ${dateFormat(new Date())}`)
 });
 
-
+ 
