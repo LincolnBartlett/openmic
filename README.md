@@ -1,28 +1,27 @@
 # OPEN MIC SOURCE
-### The open source way to find an open mic.
+##### The open source way to find an open mic.
 ---
-#### Concept
+### Concept
 An application that allows users to find open mics near them.
 
-#### Features
-- Create an account
-
+### Features
 Accounts will have different privilege levels depending on a user's relationship to a venue/open mic. The three tiers are from top to bottom: owner, host, performer.
 
-##### All users can:
+#### All users can:
 - Search for open mics
 - Review open mics
 - Review venues
 - Create groups
 
-##### Only hosts can:
+#### Only hosts can:
 - Create open mic postings
 
-##### Only owners can:
+#### Only owners can:
 - Modify official venue pages
 - Create official venue events
 
-#### Current Stack
+---
+### Current Stack
 ##### Backend
 - node.js
 
