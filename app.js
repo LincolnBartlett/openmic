@@ -31,9 +31,11 @@ app.get('/', function(req, res){
 var userRoute = require('./routes/user.js');
     app.use('/users', userRoute);
 
+var queryRoute = require('./routes/query.js');
+    app.use('/query', queryRoute);
 
 
-    
+
 //PORT
 var port = 3000;
 app.listen(port, function(){
