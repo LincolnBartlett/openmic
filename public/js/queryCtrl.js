@@ -11,15 +11,13 @@ queryCtrl.controller('queryCtrl', function($scope, $log, $http, $rootScope, geol
 
     // Functions
     // ----------------------------------------------------------------------------
-
-    // Get User's actual coordinates based on HTML5 at window load
     geolocation.getLocation().then(function(data){
-        coords = {lat:data.coords.latitude, long:data.coords.longitude};
-
-        // Set the latitude and longitude equal to the HTML5 coordinates
-        $scope.formData.longitude = parseFloat(coords.long).toFixed(3);
-        $scope.formData.latitude = parseFloat(coords.lat).toFixed(3);
-    });
+            coords = {lat:data.coords.latitude, long:data.coords.longitude};
+            $scope.formData.longitude = parseFloat(coords.long).toFixed(3);
+            $scope.formData.latitude = parseFloat(coords.lat).toFixed(3);        
+            gservice.refresh($scope.formData.latitude, $scope.formData.longitude);
+        
+        });
 
     // Get coordinates based on mouse click. When a click event is detected....
     $rootScope.$on("clicked", function(){
@@ -55,8 +53,8 @@ queryCtrl.controller('queryCtrl', function($scope, $log, $http, $rootScope, geol
             .success(function(queryResults){
 
                 // Query Body and Result Logging
-// Pass the filtered results to the Google Map Service and refresh the map
-gservice.refresh(queryBody.latitude, queryBody.longitude, queryResults);
+                // Pass the filtered results to the Google Map Service and refresh the map
+                gservice.refresh(queryBody.latitude, queryBody.longitude, queryResults);
 
                 // Count the number of records retrieved for the panel-footer
                 $scope.queryCount = queryResults.length;

@@ -1,7 +1,8 @@
 var express     = require('express'),
-router      = express.Router(),
-mongoose    = require('mongoose'),
-User        = require('../models/user.js');
+router          = express.Router(),
+mongoose        = require('mongoose'),
+User            = require('../models/user.js'),
+Venue           = require('../models/venue.js');
 
 
 // routes.js
@@ -25,7 +26,7 @@ router.post('/', function(req, res){
     var reqVerified     = req.body.reqVerified;
 
     // Opens a generic Mongoose Query. Depending on the post body we will...
-    var query = User.find({});
+    var query = Venue.find({});
 
     // ...include filter by Max Distance (converting miles to meters)
     if(distance){

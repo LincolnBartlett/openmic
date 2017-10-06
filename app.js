@@ -18,7 +18,10 @@ var app = express();
     app.use(bodyParser.text());
     app.use(bodyParser.json({ type: 'application/vnd.api+json'}));
     app.use(methodOverride('_method'));
-    
+
+
+  
+
 //DATABASE
 mongoose.connect('mongodb://localhost/openmic');
 
@@ -30,6 +33,9 @@ app.get('/', function(req, res){
 
 var userRoute = require('./routes/user.js');
     app.use('/users', userRoute);
+
+var venueRoute = require('./routes/venue.js');
+    app.use('/venue', venueRoute);
 
 var queryRoute = require('./routes/query.js');
     app.use('/query', queryRoute);
