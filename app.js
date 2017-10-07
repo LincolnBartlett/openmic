@@ -5,7 +5,8 @@ var express         = require('express'),
     ejs             = require('ejs'),
     bodyParser      = require('body-parser'),
     methodOverride  = require('method-override'),
-    dateFormat      = require('dateformat');
+    dateFormat      = require('dateformat'),
+    keys            = require('./keys.js');
 
 //EXPRESS 
 var app = express();
@@ -23,7 +24,7 @@ var app = express();
   
 
 //DATABASE
-mongoose.connect('mongodb://localhost/openmic');
+mongoose.connect(keys.mongo);
 
 //ROUTES
 app.get('/', function(req, res){
