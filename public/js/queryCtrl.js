@@ -1,6 +1,3 @@
-// queryCtrl.js
-
-// Creates the addCtrl Module and Controller. Note that it depends on 'geolocation' and 'gservice' modules.
 var queryCtrl = angular.module('queryCtrl', ['geolocation', 'gservice']);
 queryCtrl.controller('queryCtrl', function($scope, $log, $http, $rootScope, geolocation, gservice){
 
