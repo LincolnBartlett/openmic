@@ -20,17 +20,13 @@ var app = express();
     app.use(bodyParser.json({ type: 'application/vnd.api+json'}));
     app.use(methodOverride('_method'));
 
-
-  
-
 //DATABASE
-mongoose.connect(keys.mongo);
+mongoose.connect(keys.local);
 
 //ROUTES
 app.get('/', function(req, res){
     res.render('index');
 });
-
 
 var userRoute = require('./routes/user.js');
     app.use('/users', userRoute);
@@ -41,12 +37,8 @@ var venueRoute = require('./routes/venue.js');
 var queryRoute = require('./routes/query.js');
     app.use('/query', queryRoute);
 
-
-
 //PORT
 var port = (process.env.PORT || 5000);
 app.listen(port, function(){
     console.log(`Server Started on ${dateFormat(new Date())}`)
 });
-
- 

@@ -31,7 +31,7 @@ router.get('/:id', function(req, res){
             if (err){
                 res.send(err);
             }else{
-                res.send(venue);
+                res.render('venue/profile', {venue : venue});
             }
         });
 
