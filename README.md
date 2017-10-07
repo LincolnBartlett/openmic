@@ -1,6 +1,6 @@
 # OPEN MIC SOURCE
 ##### The open source way to open mic.
-
+[View a dev deployment on Heroku](https://openmicsource.herokuapp.com/)
 ### Concept
 An application that allows users to find open mics near them.
 
