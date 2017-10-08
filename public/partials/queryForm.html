@@ -1,20 +1,34 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h1 class="panel-title text-center">Find Venues</h1>
+		<h1 class="text-center">Find Venues</h1>
 	</div>
 	<div class="panel-body">
 		<form id="queryForm" name="queryForm">
 			<div class="hidden">
-				<div class="form-group">
-					<label for="latitude">Your Latitude</label> <input class="form-control" id="latitude" placeholder="39.5" readonly type="text">
-				</div>
-				<div class="form-group">
-					<label for="longitude">Your Longitude</label> <input class="form-control" id="longitude" placeholder="-98.35" readonly type="text">
-				</div>
+					<label for="latitude"></label> <input class="form-control" id="latitude" readonly type="text">
+					<label for="longitude"></label> <input class="form-control" id="longitude" readonly type="text">
 			</div>
 			<div class="form-group">
-				<label for="distance">Max. Distance (miles)</label> <input class="form-control" id="distance" placeholder="500" type="text">
-			</div><button class="btn btn-primary btn-block" ng-click="queryUsers()" type="submit">Search</button>
+				<div ng-show="value">
+					<h4><b>Select Range: </b>{{value}} Miles</h4>
+				</div>
+				<br>		
+				<input list="vals" id="distance" max="250" min="0" step="25" type="range" ng-model="value" value="75">
+				<datalist id="vals">
+					<option>0</option>
+					<option>25</option>
+					<option>50</option>
+					<option>75</option>
+					<option>100</option>
+					<option>125</option>
+					<option>150</option>
+					<option>175</option>
+					<option>200</option>
+					<option>225</option>
+					<option>250</option>
+				</data-list>
+			</div>
+			<button class="btn btn-primary btn-block" ng-click="queryUsers()" type="submit">Search</button>
 		</form>
 	</div>
 </div>

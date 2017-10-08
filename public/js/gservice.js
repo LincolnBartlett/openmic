@@ -55,9 +55,8 @@ angular.module('gservice', []).factory('gservice', function($rootScope, $http) {
 					content: contentString,
 					maxWidth: 320
 				}),
-				venue: venue.username,
-				address: venue.address,
-				zip: venue.zip
+				venue: venue.venuename,
+				address: venue.address
 			});
 		}
 		// location is now an array populated with records in Google Maps format

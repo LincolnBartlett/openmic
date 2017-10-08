@@ -3,6 +3,7 @@ queryCtrl.controller('queryCtrl', function($scope, $log, $http, $rootScope, geol
 
     // Initializes Variables
     // ----------------------------------------------------------------------------
+    $scope.value = 75;
     $scope.formData = {};
     var queryBody = {};
 
@@ -18,7 +19,6 @@ queryCtrl.controller('queryCtrl', function($scope, $log, $http, $rootScope, geol
 
     // Get coordinates based on mouse click. When a click event is detected....
     $rootScope.$on("clicked", function(){
-
         // Run the gservice functions associated with identifying coordinates
         $scope.$apply(function(){
             $scope.formData.latitude = parseFloat(gservice.clickLat).toFixed(3);
@@ -33,26 +33,16 @@ queryCtrl.controller('queryCtrl', function($scope, $log, $http, $rootScope, geol
         queryBody = {
             longitude: parseFloat($scope.formData.longitude),
             latitude: parseFloat($scope.formData.latitude),
-            distance: parseFloat($scope.formData.distance),
-            male: $scope.formData.male,
-            female: $scope.formData.female,
-            other: $scope.formData.other,
-            minAge: $scope.formData.minage,
-            maxAge: $scope.formData.maxage,
-            favlang: $scope.formData.favlang,
-            reqVerified: $scope.formData.verified
+            distance: $scope.value
         };
-
+        console.log(queryBody);
         // Post the queryBody to the /query POST route to retrieve the filtered results
         $http.post('/query', queryBody)
-
             // Store the filtered results in queryResults
             .success(function(queryResults){
-
                 // Query Body and Result Logging
                 // Pass the filtered results to the Google Map Service and refresh the map
                 gservice.refresh(queryBody.latitude, queryBody.longitude, queryResults);
-
                 // Count the number of records retrieved for the panel-footer
                 $scope.queryResults = queryResults;
                 $scope.queryCount = queryResults.length;
