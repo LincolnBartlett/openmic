@@ -28,9 +28,6 @@ app.get('/', function(req, res){
     res.render('index');
 });
 
-var userRoute = require('./routes/user.js');
-    app.use('/users', userRoute);
-
 var venueRoute = require('./routes/venue.js');
     app.use('/venue', venueRoute);
 
