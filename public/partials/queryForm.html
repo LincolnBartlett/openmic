@@ -1,6 +1,6 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h1 class="text-center">Find Venues</h1>
+		<h1 class="text-center"><i class="fa fa-search-plus" aria-hidden="true"></i> Find Venues</h1>
 	</div>
 	<div class="panel-body">
 		<form id="queryForm" name="queryForm">
@@ -33,7 +33,7 @@
 	</div>
 </div>
 <div ng-show="queryCount>0" class="panel panel-default">
-	<h3 class="text-center"> {{queryCount}} Venues found </h3>
+	<h3 class="text-center"> {{queryCount}} venues found! </h3>
 	<div ng-repeat="result in queryResults">
 		<button class="btn form-control" type="button" data-toggle="collapse" data-target="#{{result._id}}" aria-expanded="false">
 			{{result.venuename}}

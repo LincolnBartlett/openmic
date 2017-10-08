@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <title>Open Mic Source</title>
     <meta name="description" content="The open source way to open mic.">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <link rel="stylesheet" href ="/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href ="/css/font-awesome.min.css" type="text/css">
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALgMm4remRyhcw2S4N3vehmhk6MT3q7QM"></script>
@@ -21,14 +22,16 @@
 </head>
 <% include partials/nav %> 
 <body>
-<div class="row">
-    <div class="col-lg-6 col-lg-offset-1">
-        <div class="panel panel-default">
-            <div id="map" style="height:60vh;"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="panel panel-default">
+                <div id="map" style="height:60vh;"></div>
+            </div>
         </div>
-    </div>
-    <div class="col-lg-3">
-            <div ng-view></div> 
+        <div class="col-lg-5">
+                <div ng-view></div> 
+        </div>
     </div>
 </div>
 </body>
