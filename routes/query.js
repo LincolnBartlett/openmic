@@ -1,7 +1,6 @@
 var express     = require('express'),
 router          = express.Router(),
 mongoose        = require('mongoose'),
-User            = require('../models/user.js'),
 Venue           = require('../models/venue.js');
 
 
