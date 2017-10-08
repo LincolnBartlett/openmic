@@ -21,7 +21,7 @@ var app = express();
     app.use(methodOverride('_method'));
 
 //DATABASE
-mongoose.connect(keys.heroku);
+mongoose.connect( keys.local || keys.heroku);
 
 //ROUTES
 app.get('/', function(req, res){

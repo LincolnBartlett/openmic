@@ -1,38 +1,37 @@
-
-    
-        <!-- Creates Main Panel -->
-        <div class="panel panel-default">
-    
-            <!-- Panel Title -->
-            <div class="panel-heading">
-                <h2 class="panel-title text-center">Find Venues</span></h2>
-            </div>
-    
-            <!-- Panel Body -->
-            <div class="panel-body">
-    
-                <!-- Creates Form -->
-                <form name ="queryForm">
-    
-                    <div class="hidden">
-                        <div class="form-group">
-                            <label for="latitude">Your Latitude</label>
-                            <input type="text" class="form-control" id="latitude" placeholder="39.5" ng-model="formData.latitude" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="longitude">Your Longitude</label>
-                            <input type="text" class="form-control" id="longitude" placeholder="-98.35" ng-model="formData.longitude" readonly>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="distance">Max. Distance (miles)</label>
-                        <input type="text" class="form-control" id="distance" placeholder="500" ng-model="formData.distance">
-                    </div>
-    
-                    <button type="submit" class="btn btn-danger btn-block" ng-click="queryUsers()">Search</button>
-                </form>
-            </div>
-            <div ng-show="queryCount>0" class="panel-footer">
-                <p class="text-center"> {{queryCount}} Venues found </p>
-            </div>
-        </div>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h1 class="panel-title text-center">Find Venues</h1>
+	</div>
+	<div class="panel-body">
+		<form id="queryForm" name="queryForm">
+			<div class="hidden">
+				<div class="form-group">
+					<label for="latitude">Your Latitude</label> <input class="form-control" id="latitude" placeholder="39.5" readonly type="text">
+				</div>
+				<div class="form-group">
+					<label for="longitude">Your Longitude</label> <input class="form-control" id="longitude" placeholder="-98.35" readonly type="text">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="distance">Max. Distance (miles)</label> <input class="form-control" id="distance" placeholder="500" type="text">
+			</div><button class="btn btn-primary btn-block" ng-click="queryUsers()" type="submit">Search</button>
+		</form>
+	</div>
+</div>
+<div ng-show="queryCount>0" class="panel panel-default">
+	<h3 class="text-center"> {{queryCount}} Venues found </h3>
+	<div ng-repeat="result in queryResults">
+		<button class="btn form-control" type="button" data-toggle="collapse" data-target="#{{result._id}}" aria-expanded="false">
+			{{result.venuename}}
+		</button>
+		<div class="collapse" id="{{result._id}}">
+			<div class="panel-body">
+				<ul>
+					<li>Address: <br> {{result.address[0].formattedAddress}}</li>
+					<li>Profile: <a href="/venue/{{result._id}}">View Profile</a><br></li>
+				</ul>
+				
+			</div>
+		</div>
+	</div>
+</div>

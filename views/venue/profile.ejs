@@ -1,3 +1,21 @@
-Profile
-
-<%- JSON.stringify(venue) %>
+<% include ../partials/header-show %> 
+<% include ../partials/nav %> 
+<div class= "jumbotron text-center">
+<h1>
+    <%= venue.venuename %>
+</h1>
+</div>
+<div class="container">
+<div class="col-lg-4 col-offset-2">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h3>Quick Facts:</h3>
+            <hr>
+            <ul>
+                <li><b>Address:</b><br><%=venue.address[0].formattedAddress %></li>
+                <li><b>Neighborhood:</b><br><%=venue.address[0].extra.neighborhood %></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
