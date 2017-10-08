@@ -2,6 +2,7 @@ var express         = require('express'),
     router          = express.Router(),
     mongoose        = require('mongoose'),
     Venue           = require('../models/venue.js'),
+    Mic             = require('../models/mic.js'),
     NodeGeocoder    = require('node-geocoder');
 
 //GEOCODER
@@ -14,8 +15,13 @@ var geoConf = {
 
 var geocoder = NodeGeocoder(geoConf);
 
+/*-------------
+   Venue Routes
+--------------*/
+
+//All venues
 router.get('/', function(req, res){
-    var query = Venue.find({});
+    var query = Venue.find({}).populate('mics');
         query.exec(function(err, venues){
             if(err){
                 res.send(err);
@@ -26,8 +32,9 @@ router.get('/', function(req, res){
         });
 });
 
+//Specific Venue
 router.get('/:id', function(req, res){
-        Venue.findById(req.params.id, function(err, venue){
+        Venue.findById(req.params.id).populate('mics').exec(function(err, venue){
             if (err){
                 res.send(err);
             }else{
@@ -37,6 +44,7 @@ router.get('/:id', function(req, res){
 
 });
 
+//New Venue
 router.post('/', function(req, res){
     geocoder.geocode(req.body.address, function(err,parsedAddress){
         if (err){
@@ -59,6 +67,31 @@ router.post('/', function(req, res){
         }   
     });  
     
+});
+/*-------------
+   Mic Routes
+--------------*/
+
+router.post('/:id/newmic', function(req, res){
+    Venue.findById(req.params.id, function(err, venue){
+        if(err){
+            res.send(err);
+        }else{
+            Mic.create(req.body.mic, function(err, newMic){
+                if (err){
+                    res.send(err);
+                }else{
+                    newMic.micname = req.body.micname;
+                    newMic.save();
+                    venue.mics.push(newMic);
+                    venue.save();
+                    res.redirect('back');
+                }
+                
+            });
+        }
+
+    });
 });
 
 module.exports = router;

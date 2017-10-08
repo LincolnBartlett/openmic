@@ -43,7 +43,7 @@ router.post('/', function(req, res){
     }
  */
 
-    query.exec(function(err, venues){
+    query.populate('mics').exec(function(err, venues){
         if(err)
             res.send(err);
         res.json(venues);

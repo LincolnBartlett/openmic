@@ -35,7 +35,7 @@ var queryRoute = require('./routes/query.js');
     app.use('/query', queryRoute);
 
 //PORT
-var port = (process.env.PORT || 5000);
+var port = (process.env.PORT || 3000);
 app.listen(port, function(){
     console.log(`Server Started on ${dateFormat(new Date())}`)
 });

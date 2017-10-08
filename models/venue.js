@@ -8,7 +8,13 @@ var venueSchema = new Schema({
     address: {type: Array, required: true},
     location: {type: [Number], required: true}, // [Long, Lat]
     created_at: {type: Date, default: Date.now},
-    updated_at: {type: Date, default: Date.now}
+    updated_at: {type: Date, default: Date.now},
+    mics :[
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Mic"
+        }
+    ]
 });
 
 
@@ -24,4 +30,4 @@ venueSchema.pre('save', function(next){
 
 venueSchema.index({location: '2dsphere'});
 
-module.exports = mongoose.model('venues', venueSchema);
+module.exports = mongoose.model('Venue', venueSchema);

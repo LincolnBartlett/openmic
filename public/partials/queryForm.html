@@ -33,18 +33,27 @@
 	</div>
 </div>
 <div ng-show="queryCount>0" class="panel panel-default">
-	<h3 class="text-center"> {{queryCount}} venues found! </h3>
+	<div class="panel-heading">
+		<h2 class="text-center"> Found {{queryCount}} Near You</h2>
+	</div>
 	<div ng-repeat="result in queryResults">
-		<button class="btn form-control" type="button" data-toggle="collapse" data-target="#{{result._id}}" aria-expanded="false">
+		<button class="btn btn-lg form-control" type="button" data-toggle="collapse" data-target="#{{result._id}}" aria-expanded="false">
 			{{result.venuename}}
 		</button>
 		<div class="collapse" id="{{result._id}}">
 			<div class="panel-body">
+				<b>About:</b>
 				<ul>
 					<li>Address: <br> {{result.address[0].formattedAddress}}</li>
 					<li>Profile: <a href="/venue/{{result._id}}">View Profile</a><br></li>
 				</ul>
-				
+				<hr>
+				<b>Mics:</b>
+				<ul>
+						<div ng-repeat="mic in result.mics">
+							<li><a href="/venue/{{result._id}}">{{mic.micname}}</a></li>
+						</div>
+				</ul>
 			</div>
 		</div>
 	</div>

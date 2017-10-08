@@ -47,7 +47,7 @@ angular.module('gservice', []).factory('gservice', function($rootScope, $http) {
 		for (var i = 0; i < response.length; i++) {
 			var venue = response[i];
 			// Create popup windows for each record
-			var contentString =`<p><b>Venue:</b><br> ${venue.venuename}<br><b>Address:</b><br> ${venue.address[0].formattedAddress}<br><br> <a href="/venue/${venue._id}" style="color:#000000">View Profile</a></p>`;
+			var contentString =`<p><b>Venue:</b><br> ${venue.venuename}<br><b>Address:</b><br> ${venue.address[0].formattedAddress}<br><b>Mics:</b> ${venue.mics.length}<br><hr><a href="/venue/${venue._id}" style="color:#000000;">View Profile</a></p>`;
 			// Converts each of the JSON records into Google Maps Location format (Note [Lat, Lng] format).
 			locations.push({
 				latlon: new google.maps.LatLng(venue.location[1], venue.location[0]),
@@ -73,7 +73,7 @@ angular.module('gservice', []).factory('gservice', function($rootScope, $http) {
 		if (!map) {
 			// Create a new map and place in the index.html page
 			var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 11,
+                zoom: 9,
                 disableDefaultUI: true,
                 center: myLatLng,
               });
