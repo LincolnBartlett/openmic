@@ -78,19 +78,18 @@ angular.module('gservice', []).factory('gservice', function($rootScope, $http) {
                 center: myLatLng,
               });
 		}
-		// If a filter was used set the icons yellow, otherwise blue
 		if (filter) {
-			icon = "http://maps.google.com/mapfiles/ms/icons/yellow-dot.png";
+			icon = "/images/map-marker.png";
 		} else {
-			icon = "http://maps.google.com/mapfiles/ms/icons/blue-dot.png";
+			icon = "/images/map-marker.png";
 		}
 		// Loop through each location in the array and place a marker
 		locations.forEach(function(n, i) {
 			var marker = new google.maps.Marker({
 				position: n.latlon,
 				map: map,
-				title: "Big Map",
-				icon: icon,
+				title: "Venue Map",
+				icon: "/images/map-marker.png",
 			});
 			// For each marker created, add a listener that checks for clicks
 			google.maps.event.addListener(marker, 'click', function(e) {
@@ -104,7 +103,7 @@ angular.module('gservice', []).factory('gservice', function($rootScope, $http) {
 		var marker = new google.maps.Marker({
 			position: initialLocation,	
 			map: map,
-			icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+			icon: '/images/map-marker-self.png'
 		});
 		lastMarker = marker;
 		// Function for moving to a selected location
@@ -114,7 +113,7 @@ angular.module('gservice', []).factory('gservice', function($rootScope, $http) {
 			var marker = new google.maps.Marker({
 				position: e.latLng,
 				map: map,
-				icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+				icon: '/images/map-marker-self.png'
 			});
 			// When a new spot is selected, delete the old red bouncing marker
 			if (lastMarker) {
