@@ -34,13 +34,13 @@ router.get('/', function(req, res){
 
 //Specific Venue
 router.get('/:id', function(req, res){
-        Venue.findById(req.params.id).populate('mics').exec(function(err, venue){
-            if (err){
-                res.send(err);
-            }else{
-                res.render('venue/profile', {venue : venue});
-            }
-        });
+    Venue.findById(req.params.id).populate('mics').exec(function(err, venue){
+        if (err){
+            res.send(err);
+        }else{
+            res.render('venue/profile', {venue : venue});
+        }
+    });
 
 });
 
@@ -68,6 +68,7 @@ router.post('/', function(req, res){
     });  
     
 });
+
 /*-------------
    Mic Routes
 --------------*/

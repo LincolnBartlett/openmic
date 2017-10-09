@@ -21,7 +21,19 @@
 
 <div class="col-lg-6">
     <div class="panel panel-primary">
-        <%= venue.mics %>
+        <form action="/venue/<%=venue._id%>/newmic">
+            <select name="Day">
+              <option value="Monday">Monday</option>
+              <option value="Tuesday">Tuesday</option>
+              <option value="Wednesday">Wednesday</option>
+              <option value="Thursday">Thursday</option>
+              <option value="Friday">Friday</option>
+              <option value="Saturday">Saturday</option>
+              <option value="Sunday">Sunday</option>
+            </select>
+            <br><br>
+            <input type="submit">
+          </form>
     </div>
 </div>
 

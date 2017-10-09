@@ -5,8 +5,8 @@ var express         = require('express'),
     ejs             = require('ejs'),
     bodyParser      = require('body-parser'),
     methodOverride  = require('method-override'),
-    dateFormat      = require('dateformat'),
-    keys            = require('./keys.js');
+    keys            = require('./keys.js'),
+    moment          = require('moment');
 
 //EXPRESS 
 var app = express();
@@ -21,7 +21,7 @@ var app = express();
     app.use(methodOverride('_method'));
 
 //DATABASE
-mongoose.connect(keys.heroku);
+mongoose.connect(keys.local);
 
 //ROUTES
 app.get('/', function(req, res){
@@ -37,5 +37,5 @@ var queryRoute = require('./routes/query.js');
 //PORT
 var port = (process.env.PORT || 3000);
 app.listen(port, function(){
-    console.log(`Server Started on ${dateFormat(new Date())}`)
+    console.log(`Server Started on ${moment().format('MMMM Do, YYYY hh:mma')}`)
 });
