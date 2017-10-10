@@ -4,6 +4,13 @@ var Schema      = mongoose.Schema;
 
 var micSchema = new Schema({
     micname : String,
+    micdate : {
+        time : Number,
+        day : String,
+        time : String,
+        weekly : Boolean,
+        monthly : Number
+    },
     created_at: {type: Date, default: Date.now},
     updated_at: {type: Date, default: Date.now}
 

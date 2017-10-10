@@ -1,24 +1,120 @@
 <% include ../partials/header-show %> 
 <% include ../partials/nav %> 
 <div class= "jumbotron text-center">
-<h1>
-    <%= venue.venuename %>
-</h1>
+    <h1>
+        <%= venue.venuename %>
+    </h1>
 </div>
+
 <div class="container">
-<div class="col-lg-4 col-offset-2">
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <h3>Quick Facts:</h3>
-            <hr>
-            <ul>
-                <li><b>Address:</b><br><%=venue.address[0].formattedAddress %></li>
-                <li><b>Neighborhood:</b><br><%=venue.address[0].extra.neighborhood %></li>
-            </ul>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="panel staticmap" style="background-image:url('https://maps.googleapis.com/maps/api/staticmap?center=<%=venue.location[1]%>,<%=venue.location[0]%>&zoom=16&size=640x640&scale=2&markers=color:red%7C%7C<%=venue.location[1]%>,<%=venue.location[0]%>&key=AIzaSyBzH5Nm8MyOuRVIqWw6MK3yJoUlRkAxnxE')">
+        </div>        
+    </div>
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <b>Quick Facts: </b>
+            </div>
+            <div class="panel-body">
+                <dl>
+                        <dt>Address:</dt>
+                        <dd><%=venue.address[0].formattedAddress %></dd>    
+                        <dt>Neighborhood:</dt>
+                        <dd><%=venue.address[0].extra.neighborhood %></dd>
+                </dl>
+            </div>
+        </div>
+        <div class="panel panel-default">
+                <div class="panel-heading">
+                    <b>Mics:</b>
+                </div>
+                <div class="panel-body">
+                    <dl>
+                    <% venue.mics.forEach(function(mic){ %>
+    
+                        <dt><b><%=mic.micname%></b></dt>
+                        <% if(mic.micdate.weekly == true){ %>
+                            <dd>Weekly Mic</dd>
+                        <% } %>
+    
+                        <% if(mic.micdate.monthly > 0){ %>
+                            <dd>Monthly Mic</dd>
+                            <dd> <% if(mic.micdate.monthly == 1){ %>
+                                Every First <%= mic.micdate.day %> of the month
+                            <% } else if(mic.micdate.monthly == 2){ %>
+                                Every Second <%= mic.micdate.day %> of the month
+                            <% } else if(mic.micdate.monthly == 3){ %>
+                                Every Third <%= mic.micdate.day %> of the month
+                            <% } else if(mic.micdate.monthly == 4){ %>
+                                Every Fourth <%= mic.micdate.day %> of the month
+                            </dd>
+                            <% } %>at 
+                            <% if(mic.micdate.time.slice(0,2) > 12){ %>
+                            <%-mic.micdate.time.slice(0,2)- 12 %><%-mic.micdate.time.slice(2)%> PM  
+                    <% }else{ %>
+                            <%=mic.micdate.time%> AM
+                    <% } %>
+                        <% } else { %>
+                        <dd><%=mic.micdate.day%> at 
+                            <% if(mic.micdate.time.slice(0,2) > 12){ %>
+                            <%-mic.micdate.time.slice(0,2)- 12 %><%-mic.micdate.time.slice(2)%> PM  
+                    <% }else{ %>
+                            <%=mic.micdate.time%> AM
+                    <% } %>
+                        </dd>
+                        <% } %>
+                        <hr>
+                    <% }); %>
+                    </dl>
+                </div>
+            </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <b>Add new Mic:</b>
+            </div>
+            <div class="panel-body">
+                <form action="/venue/<%=venue._id%>/newmic" method="POST">
+                    <div class="form-group">
+                    <label>Mic Name:</label>
+                    <input class="form-control" type="text" name="mic[micname]" required>
+                    <label>Day of the Week:</label>
+                    <select class="form-control" name="mic[micdate][day]" required>
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
+                        <option value="Sunday">Sunday</option>
+                    </select>
+                    <label>Is weekly:</label>
+                    <div class="form-control">
+                    <input type="radio" name="mic[micdate][weekly]" value="true"> Yes
+                    <input type="radio" name="mic[micdate][weekly]" value="false"> No
+                    </div>
+                    <label>Is monthly:</label>
+                    <select class="form-control" name="mic[micdate][monthly]">
+                        <option value="0">Is not monthly</option>
+                        <option value="1">First of the Month</option>
+                        <option value="2">Second of the Month</option>
+                        <option value="3">Thid of the Month</option>
+                        <option value="4">Fourth of the Month</option>
+                    </select>
+                    <label>Time: </label>
+                    <input class="form-control" type="time" name="mic[micdate][time]" required>
+                    <br>
+                    <input class="btn btn-primary" type="submit">
+                </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
-
-
-
 </div>

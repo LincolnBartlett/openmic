@@ -2,6 +2,7 @@ var express         = require('express'),
     router          = express.Router(),
     mongoose        = require('mongoose'),
     Venue           = require('../models/venue.js'),
+    moment          = require('moment');
     Mic             = require('../models/mic.js'),
     NodeGeocoder    = require('node-geocoder');
 
@@ -82,11 +83,13 @@ router.post('/:id/newmic', function(req, res){
                 if (err){
                     res.send(err);
                 }else{
-                    newMic.micname = req.body.micname;
+                    newMic.micname = req.body.mic.micname;
+                    newMic.micdate = req.body.mic.micdate;
                     newMic.save();
                     venue.mics.push(newMic);
                     venue.save();
                     res.redirect('back');
+                   
                 }
                 
             });
